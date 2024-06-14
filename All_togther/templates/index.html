@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cropper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #canvas {
+            border: 1px solid #000;
+            max-width: 100%;
+            height: auto;
+        }
+        button {
+            margin: 10px;
+        }
+        video {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Cropper</h1>
+    <input type="file" id="fileInput">
+    <br>
+    <button id="cameraButton">Open Camera</button>
+    <br>
+    <button id="captureButton" style="display:none;">Capture</button>
+    <br>
+    <canvas id="canvas"></canvas>
+    <br>
+    <button id="cropButton">Crop</button>
+    <button id="saveButton">Save Cropped Image</button>
+    <button id="imgToTextButton" style="display:none;">IMGTOTEXT</button>
+    <video id="video"></video>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

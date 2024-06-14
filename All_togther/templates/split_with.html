@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Split the Bill?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .contact-container {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .contact-container select {
+            margin-right: 10px;
+        }
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Who split with you the bill?</h1>
+    <div id="contactsList">
+        <div class="contact-container">
+            <select class="contact-select">
+                <option value="">Select contact</option>
+                <option value="John Doe">John Doe - 123456789</option>
+                <option value="Jane Smith">Jane Smith - 987654321</option>
+                <option value="Alice Johnson">Alice Johnson - 456123789</option>
+                <!-- Add more contacts as needed -->
+            </select>
+            <button type="button" id="addContactButton">+</button>
+        </div>
+    </div>
+    <button id="proceedButton">Proceed</button>
+    <script src="{{ url_for('static', filename='js/split_with.js') }}"></script>
+</body>
+</html>
