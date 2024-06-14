@@ -259,7 +259,7 @@ def main():
         #image_path = str(i) + '.jpg'
         #extract_text(image_path)
         #find_and_crop_receipt(image_path, 'cropped_' + image_path)
-        image_path = r'..\ImgToText\Crop_image\tmp_cropped_image.png'
+        image_path = r'..\BillToSplit\Crop_image\tmp_cropped_image.png'
         #extract_text2(image_path)
         text_by_items = find_numbers(image_path)
         print(text_by_items)    

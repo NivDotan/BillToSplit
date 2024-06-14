@@ -2,11 +2,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('tableBody');
     const saveButton = document.getElementById('saveButton');
 
+    // Retrieve selected contacts from local storage
+    const selectedContacts = JSON.parse(localStorage.getItem('selectedContacts')) || [];
+
+    // Function to populate contacts in a select element
+    const populateContacts = (select) => {
+        select.innerHTML = `<option value="">Select person</option>`;
+        selectedContacts.forEach(contact => {
+            const option = document.createElement('option');
+            option.value = contact;
+            option.textContent = contact;
+            select.appendChild(option);
+        });
+    };
+
+    // Populate contacts in the initial dropdowns
+    document.querySelectorAll('.who-pay-select').forEach(select => {
+        populateContacts(select);
+    });
+
     // Add person button event handler
     document.querySelectorAll('.add-person-button').forEach(button => {
         button.addEventListener('click', (event) => {
             const whoPayContainer = event.target.closest('.who-pay-container');
             const newSelect = whoPayContainer.querySelector('.who-pay-select').cloneNode(true);
+            populateContacts(newSelect);
             whoPayContainer.insertBefore(newSelect, event.target);
         });
     });
