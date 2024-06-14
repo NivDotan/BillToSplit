@@ -12,19 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
         contactCell.textContent = data.person;
         row.appendChild(contactCell);
         
-        const itemCell = document.createElement('td');
-        itemCell.textContent = data.item;
-        row.appendChild(itemCell);
+        const itemsCell = document.createElement('td');
+        itemsCell.textContent = data.items;
+        row.appendChild(itemsCell);
         
         const amountCell = document.createElement('td');
-        amountCell.textContent = `$${data.price.toFixed(2)}`;
+        amountCell.textContent = `$${data.totalAmount.toFixed(2)}`;
         row.appendChild(amountCell);
         
         const actionCell = document.createElement('td');
         const bitButton = document.createElement('button');
         bitButton.textContent = 'Bit';
         bitButton.addEventListener('click', () => {
-            alert(`Bit sent to ${data.person} for ${data.item}!`);
+            alert(`Bit sent to ${data.person} for $${data.totalAmount.toFixed(2)}!`);
         });
         actionCell.appendChild(bitButton);
         row.appendChild(actionCell);

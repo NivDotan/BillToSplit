@@ -31,9 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Function to gather table data
+    // Function to gather table data and aggregate by contact
     const gatherTableData = () => {
-        const tableData = [];
+        const contactData = {};
+
         tableBody.querySelectorAll('tr').forEach(row => {
             const item = row.children[0].textContent;
             const price = parseFloat(row.children[1].textContent);
@@ -42,9 +43,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const whoPay = Array.from(whoPaySelects).map(select => select.value).filter(value => value);
 
             whoPay.forEach(person => {
-                tableData.push({ person, item, price: price * quantity });
+                if (!contactData[person]) {
+                    contactData[person] = { items: [], totalAmount: 0 };
+                }
+                contactData[person].items.push(item);
+                contactData[person].totalAmount += price * quantity;
             });
         });
+
+        // Transform contactData to an array for easy handling in the final view
+        const tableData = Object.entries(contactData).map(([person, data]) => ({
+            person,
+            items: data.items.join(', '),
+            totalAmount: data.totalAmount
+        }));
+
         return tableData;
     };
 
