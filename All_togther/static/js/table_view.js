@@ -36,11 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const tableData = [];
         tableBody.querySelectorAll('tr').forEach(row => {
             const item = row.children[0].textContent;
-            const price = row.children[1].textContent;
-            const quantity = row.children[2].textContent;
+            const price = parseFloat(row.children[1].textContent);
+            const quantity = parseInt(row.children[2].textContent);
             const whoPaySelects = row.querySelectorAll('.who-pay-select');
             const whoPay = Array.from(whoPaySelects).map(select => select.value).filter(value => value);
-            tableData.push({ item, price, quantity, whoPay });
+
+            whoPay.forEach(person => {
+                tableData.push({ person, item, price: price * quantity });
+            });
         });
         return tableData;
     };
@@ -49,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     saveButton.addEventListener('click', () => {
         const tableData = gatherTableData();
         console.log('Table Data:', tableData);
-        // Perform save operation, e.g., send data to the server
+        // Store table data in local storage for use in the final page
+        localStorage.setItem('finalTableData', JSON.stringify(tableData));
+        window.location.href = '/final-view';
     });
 });

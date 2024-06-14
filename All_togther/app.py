@@ -34,6 +34,10 @@ def table_view():
     items = main()  # Assuming main() returns the required items
     return render_template('table_view.html', items=items)
 
+@app.route('/final-view')
+def final_view():
+    return render_template('final_view.html')
+
 @app.route('/<path:path>')
 def static_files(path):
     return send_from_directory('public', path)
